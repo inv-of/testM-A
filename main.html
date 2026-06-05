@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET ===== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    width: 100%;
+    height: 100vh;
+
+    background-image: url("fsection.jpg"); /* 👈 حطي الصورة هنا */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+
+.countdown-section{
+    background:url("ssection.jpg") center/cover no-repeat;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:100px 30px;
+
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s ease;
+    color:#41402c;
+}
+
+.countdown-title,
+.counting-down-text,
+.time-box,
+.time-box span,
+.time-box p{
+    color:#41402c;
+}
+
+.countdown-section > *{
+    position:relative;
+    z-index:2;
+}
+
+.countdown-section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+.countdown-section h2{
+    font-size: 54px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color:#41402c;
+    font-family: 'Great Vibes', cursive;
+}
+.countdown-section p{
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color:#41402c;
+    font-family: 'Cinzel Decorative', serif;
+}
+.countdown-title{
+    
+    font-family:'Cinzel Decorative', serif;
+    font-size:28px;
+    font-weight:400;
+    margin-bottom:50px;
+    max-width:800px;
+    line-height:1.6;
+}
+
+.countdown-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    max-width: 400px;
+    margin: auto;
+}
+
+.time-box{
+    background: rgba(255, 255, 255, 0.7);
+    padding: 25px 20px;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px);
+}
+
+.time-box span{
+    display:block;
+    font-size:60px;
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.time-box p{
+    font-size:16px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-family:'Cinzel Decorative', serif;
+}
+
+.countdown-logo{
+    width: 200px; 
+    max-width:70%;
+    margin-bottom:35px;
+    display:block;
+}
+
+@media (max-width:768px){
+
+    .countdown-title{
+        font-size:14px;
+        margin-bottom:40px;
+    }
+
+    .countdown-container{
+        gap:15px;
+    }
+
+    .time-box{
+        min-width:70px;
+    }
+
+    .time-box span{
+        font-size:34px;
+    }
+
+    .time-box p{
+        font-size:11px;
+    }
+
+}
+.dresscode-section{
+    width: 100%;
+    padding: 100px 20px;
+
+    background-image: url("ssection.jpg"); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+.dresscode-section{
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s ease;
+}
+
+.dresscode-section.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dresscode-content{
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: auto;
+    color:#41402c;
+}
+
+.dresscode-content h2{
+    font-size: 54px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color:#41402c;
+    font-family: 'Great Vibes', cursive;
+}
+
+.dresscode-content p{
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color:#41402c;
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.dress-img{
+    width: 550px;
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    
+</section>
+
+<section id="section2" class="countdown-section">
+
+   <h2>Countdown</h2>
+
+    <p>
+        Every second brings us closer to forever
+    </p>
+
+    <div class="countdown-container">
+
+        <div class="time-box">
+            <span id="days">00</span>
+            <p>Days</p>
+        </div>
+
+        <div class="time-box">
+            <span id="hours">00</span>
+            <p>Hours</p>
+        </div>
+
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <p>Minutes</p>
+        </div>
+
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <p>Seconds</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="dresscode-section">
+
+    <div class="dresscode-content">
+
+        <h2>Dress Code</h2>
+
+        <p>
+            We kindly ask our guests to dress in elegant formal attire to match the beauty of the occasion.
+        </p>
+
+        <!-- صورة توضيح الدريس كود -->
+        <img src="dresscode.jpg" alt="Dress Code Guide" class="dress-img">
+
+    </div>
+
+</section>
+
+<script>
+
+const weddingDate = new Date("November 5, 2026 16:00:00").getTime();
+
+setInterval(() => {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+}, 1000);
+
+</script>
+<script>
+window.addEventListener("scroll", function () {
+    const section = document.querySelector(".countdown-section");
+    const position = section.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (position < screenHeight - 100) {
+        section.classList.add("show");
+    }
+});
+</script>
+<script>
+window.addEventListener("scroll", function () {
+
+    const dressSection = document.querySelector(".dresscode-section");
+    const position = dressSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (position < screenHeight - 100) {
+        dressSection.classList.add("show");
+    }
+
+});
+</script>
+</body>
+</html>
