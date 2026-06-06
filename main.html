@@ -12,7 +12,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
     font-family: "Arial", sans-serif;
 }
 
@@ -49,15 +49,42 @@ body{
 
 .countdown-section{
     width:100%;
-    min-height:100vh;
-
+    min-height:auto;      /* مهم جداً */
+    padding:80px 20px;    /* مساحة حوالين المحتوى */
+    
     display:flex;
     justify-content:center;
     align-items:center;
+
+    opacity:0;
+    transform:translateY(80px);
+    transition:all 1.2s ease;
 }
+
+.countdown-section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.countdown-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:fit-content;
+}
+
 .countdown-wrapper{
     display:flex;
     gap:18px;
+}
+
+.countdown-text{
+    margin-top:40px;
+    font-size:28px;
+    letter-spacing:3px;
+    color:#41402c;
+    font-family:'Cinzel Decorative', serif;
+    text-align:center;
 }
 
 .card{
@@ -108,23 +135,18 @@ body{
 .top,
 .bottom{
     position:absolute;
+    left:0;
     width:100%;
-    text-align:center;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
     color:#fff;
     font-family:"Times New Roman", serif;
-    font-size:180px;
+    font-size:220px;
     line-height:1;
-    transition:.6s;
 }
-
-.top{
-    top:20px;
-}
-
-.bottom{
-    bottom:-20px;
-}
-
 .flip{
     animation:flip .6s ease;
 }
@@ -220,37 +242,40 @@ body{
 
 <section class="countdown-section">
 
-   <h2>Countdown</h2>
+    <div class="countdown-content">
 
-    <div class="countdown-wrapper">
+        <div class="countdown-wrapper">
 
-    <div class="card">
-        <div class="string"></div>
+            <!-- الكارت الأول -->
+            <div class="card">
+                <div class="string"></div>
 
-        <div class="card-inner">
-            <div class="hole"></div>
+                <div class="card-inner">
+                    <div class="hole"></div>
+                    <div class="top" id="tens-top">0</div>
+                    <div class="middle-line"></div>
+                </div>
+            </div>
 
-            <div class="top" id="tens-top">0</div>
-            <div class="bottom" id="tens-bottom">0</div>
+            <!-- الكارت الثاني -->
+            <div class="card">
+                <div class="string"></div>
 
-            <div class="middle-line"></div>
+                <div class="card-inner">
+                    <div class="hole"></div>
+                    <div class="top" id="ones-top">0</div>
+                    <div class="middle-line"></div>
+                </div>
+            </div>
+
         </div>
+
+        <p class="countdown-text">
+            Counting Down To Our Forever
+        </p>
+
     </div>
 
-    <div class="card">
-        <div class="string"></div>
-
-        <div class="card-inner">
-            <div class="hole"></div>
-
-            <div class="top" id="ones-top">0</div>
-            <div class="bottom" id="ones-bottom">0</div>
-
-            <div class="middle-line"></div>
-        </div>
-    </div>
-
-</div>
 </section>
 
 <section class="dresscode-section">
@@ -263,7 +288,6 @@ body{
             We kindly ask our guests to dress in elegant formal attire to match the beauty of the occasion.
         </p>
 
-        <!-- صورة توضيح الدريس كود -->
         <img src="dresscode.jpg" alt="Dress Code Guide" class="dress-img">
 
     </div>
@@ -272,7 +296,7 @@ body{
 
 <script>
 
-const targetDate = new Date("2026-06-16T00:00:00");
+const targetDate = new Date("2026-06-18T00:00:00");
 
 let oldDigits = ["0","0"];
 
@@ -309,15 +333,15 @@ function updateCountdown(){
         if(oldDigits[index] !== el.value){
 
             el.top.classList.remove("flip");
-            el.bottom.classList.remove("flip");
+           
 
             void el.top.offsetWidth;
 
             el.top.classList.add("flip");
-            el.bottom.classList.add("flip");
+           
 
             el.top.textContent = el.value;
-            el.bottom.textContent = el.value;
+            
 
             oldDigits[index] = el.value;
         }
@@ -354,6 +378,28 @@ window.addEventListener("scroll", function () {
     }
 
 });
+</script>
+<script>
+
+const countdownSection =
+document.querySelector(".countdown-section");
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach((entry)=>{
+
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+
+    });
+
+},{
+    threshold:0.2
+});
+
+observer.observe(countdownSection);
+
 </script>
 </body>
 </html>
