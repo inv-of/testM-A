@@ -126,6 +126,11 @@ body::before{
     transform: translateY(120px);
     opacity: 0;
     animation: envelopeUp 1.2s ease forwards;
+    .envelope-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 }
 
 @keyframes envelopeUp{
@@ -135,14 +140,14 @@ body::before{
     }
 }
 .main{
-    transform: translateY(80px);
     opacity: 0;
+    transform: translateY(60px);
     transition: 1s ease;
 }
 
 .main.show{
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
 }
 .seal{
     position: absolute;
@@ -178,35 +183,54 @@ body::before{
         opacity: 0;
     }
 }
+
+.open-text{
+    color: #7A002C;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+.page{
+    display: flex;
+    flex-direction: column;   /* ده أهم سطر */
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+}
 </style>
 </head>
 
 <body>
 
-<div class="envelope" onclick="openEnvelope()">
+<div class="page">
 
-    <div class="envelope-body"></div>
+    <div class="envelope">
+        <div class="envelope-body"></div>
+        <div class="flap"></div>
 
-    <div class="flap"></div>
-
-    <div class="seal">
-        <img src="seal.png" alt="Wax Seal">
+        <div class="seal">
+            <img src="seal.png">
+        </div>
     </div>
 
+    <p class="open-text">Open The Invitation</p>
+
 </div>
-
 <script>
-function openEnvelope() {
+document.querySelector(".envelope").addEventListener("click", function(){
 
-    const envelope = document.querySelector('.envelope');
+    // فتح الظرف
+    this.classList.add("open");
 
-    envelope.classList.add('open');
-
+    // بعد animation يروح لصفحة main
     setTimeout(() => {
         window.location.href = "main.html";
-    }, 500); // بدل 1200ms
+    }, 800);
 
-}
+});
 </script>
 <script>
 document.querySelector(".seal").addEventListener("click", function(){
