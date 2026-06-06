@@ -63,13 +63,6 @@ body::before{
     z-index:2;
 }
 
-.seal{
-    position:absolute;
-    top:30%;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:3;
-}
 
 .seal img{
     width:300px;
@@ -128,6 +121,63 @@ body::before{
 .envelope.open .seal{
     opacity:0;
 }
+
+.envelope-wrapper{
+    transform: translateY(120px);
+    opacity: 0;
+    animation: envelopeUp 1.2s ease forwards;
+}
+
+@keyframes envelopeUp{
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.main{
+    transform: translateY(80px);
+    opacity: 0;
+    transition: 1s ease;
+}
+
+.main.show{
+    transform: translateY(0);
+    opacity: 1;
+}
+.seal{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* حالة الـ pop */
+.seal.pop{
+    animation: sealPop 0.8s ease forwards;
+}
+
+@keyframes sealPop{
+    0%{
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    40%{
+        transform: translate(-50%, -60%) scale(1.3) rotate(10deg);
+    }
+
+    70%{
+        transform: translate(-50%, -40%) scale(0.9) rotate(-8deg);
+        opacity: 0.8;
+    }
+
+    100%{
+        transform: translate(-50%, -120%) scale(0.2) rotate(20deg);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -158,6 +208,10 @@ function openEnvelope() {
 
 }
 </script>
-
+<script>
+document.querySelector(".seal").addEventListener("click", function(){
+    this.classList.add("pop");
+});
+</script>
 </body>
 </html>
