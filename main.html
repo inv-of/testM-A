@@ -21,7 +21,7 @@
     width: 100%;
     height: 100vh;
 
-    background-image: url("fsection.jpg"); /* 👈 حطي الصورة هنا */
+    background-image: url("fsection.png"); /* 👈 حطي الصورة هنا */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,131 +35,122 @@
 
 
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background:#f6f3f3;
+}
+
 .countdown-section{
-    background:url("ssection.jpg") center/cover no-repeat;
-    position:relative;
+    width:100%;
+    min-height:100vh;
+
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    text-align:center;
-    padding:100px 30px;
-
-    opacity:0;
-    transform:translateY(50px);
-    transition:1s ease;
-    color:#41402c;
+}
+.countdown-wrapper{
+    display:flex;
+    gap:18px;
 }
 
-.countdown-title,
-.counting-down-text,
-.time-box,
-.time-box span,
-.time-box p{
-    color:#41402c;
-}
-
-.countdown-section > *{
+.card{
     position:relative;
-    z-index:2;
 }
 
-.countdown-section.show{
-    opacity:1;
-    transform:translateY(0);
-}
-.countdown-section h2{
-    font-size: 54px;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    color:#41402c;
-    font-family: 'Great Vibes', cursive;
-}
-.countdown-section p{
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    color:#41402c;
-    font-family: 'Cinzel Decorative', serif;
-}
-.countdown-title{
-    
-    font-family:'Cinzel Decorative', serif;
-    font-size:28px;
-    font-weight:400;
-    margin-bottom:50px;
-    max-width:800px;
-    line-height:1.6;
+.string{
+    position:absolute;
+    width:3px;
+    height:100px;
+    background:#7A002C;
+    left:50%;
+    top:-100px;
+    transform:translateX(-50%);
 }
 
-.countdown-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    justify-items: center;
-    max-width: 400px;
-    margin: auto;
+.card-inner{
+    width:180px;
+    height:250px;
+    background:#7A002C;
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
 }
 
-.time-box{
-    background: rgba(255, 255, 255, 0.7);
-    padding: 25px 20px;
-    border-radius: 15px;
-    width: 150px;
-    height: 150px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    backdrop-filter: blur(5px);
+.hole{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#f6f3f3;
+    left:50%;
+    top:14px;
+    transform:translateX(-50%);
+    z-index:10;
 }
 
-.time-box span{
-    display:block;
-    font-size:60px;
-    font-family:'Cinzel Decorative', serif;
-    font-weight:700;
-    margin-bottom:10px;
+.middle-line{
+    position:absolute;
+    width:100%;
+    height:3px;
+    background:#f6f3f3;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
 }
 
-.time-box p{
-    font-size:16px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    font-family:'Cinzel Decorative', serif;
+.top,
+.bottom{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    font-family:"Times New Roman", serif;
+    font-size:180px;
+    line-height:1;
+    transition:.6s;
 }
 
-.countdown-logo{
-    width: 200px; 
-    max-width:70%;
-    margin-bottom:35px;
-    display:block;
+.top{
+    top:20px;
 }
 
-@media (max-width:768px){
+.bottom{
+    bottom:-20px;
+}
 
-    .countdown-title{
-        font-size:14px;
-        margin-bottom:40px;
+.flip{
+    animation:flip .6s ease;
+}
+
+@keyframes flip{
+    0%{
+        transform:rotateX(0);
+    }
+    50%{
+        transform:rotateX(90deg);
+    }
+    100%{
+        transform:rotateX(0);
+    }
+}
+
+@media(max-width:768px){
+
+    .card-inner{
+        width:120px;
+        height:180px;
     }
 
-    .countdown-container{
-        gap:15px;
-    }
-
-    .time-box{
-        min-width:70px;
-    }
-
-    .time-box span{
-        font-size:34px;
-    }
-
-    .time-box p{
-        font-size:11px;
+    .top,
+    .bottom{
+        font-size:130px;
     }
 
 }
@@ -227,38 +218,39 @@
     
 </section>
 
-<section id="section2" class="countdown-section">
+<section class="countdown-section">
 
    <h2>Countdown</h2>
 
-    <p>
-        Every second brings us closer to forever
-    </p>
+    <div class="countdown-wrapper">
 
-    <div class="countdown-container">
+    <div class="card">
+        <div class="string"></div>
 
-        <div class="time-box">
-            <span id="days">00</span>
-            <p>Days</p>
+        <div class="card-inner">
+            <div class="hole"></div>
+
+            <div class="top" id="tens-top">0</div>
+            <div class="bottom" id="tens-bottom">0</div>
+
+            <div class="middle-line"></div>
         </div>
-
-        <div class="time-box">
-            <span id="hours">00</span>
-            <p>Hours</p>
-        </div>
-
-        <div class="time-box">
-            <span id="minutes">00</span>
-            <p>Minutes</p>
-        </div>
-
-        <div class="time-box">
-            <span id="seconds">00</span>
-            <p>Seconds</p>
-        </div>
-
     </div>
 
+    <div class="card">
+        <div class="string"></div>
+
+        <div class="card-inner">
+            <div class="hole"></div>
+
+            <div class="top" id="ones-top">0</div>
+            <div class="bottom" id="ones-bottom">0</div>
+
+            <div class="middle-line"></div>
+        </div>
+    </div>
+
+</div>
 </section>
 
 <section class="dresscode-section">
@@ -280,24 +272,63 @@
 
 <script>
 
-const weddingDate = new Date("November 5, 2026 16:00:00").getTime();
+const targetDate = new Date("2026-06-16T00:00:00");
 
-setInterval(() => {
+let oldDigits = ["0","0"];
 
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+function updateCountdown(){
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const now = new Date();
 
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
+    const diff = targetDate - now;
 
-}, 1000);
+    const days = Math.max(
+        0,
+        Math.ceil(diff / (1000*60*60*24))
+    );
+
+    const digits = String(days)
+        .padStart(2,"0")
+        .split("");
+
+    const elements = [
+        {
+            top:document.getElementById("tens-top"),
+            bottom:document.getElementById("tens-bottom"),
+            value:digits[0]
+        },
+        {
+            top:document.getElementById("ones-top"),
+            bottom:document.getElementById("ones-bottom"),
+            value:digits[1]
+        }
+    ];
+
+    elements.forEach((el,index)=>{
+
+        if(oldDigits[index] !== el.value){
+
+            el.top.classList.remove("flip");
+            el.bottom.classList.remove("flip");
+
+            void el.top.offsetWidth;
+
+            el.top.classList.add("flip");
+            el.bottom.classList.add("flip");
+
+            el.top.textContent = el.value;
+            el.bottom.textContent = el.value;
+
+            oldDigits[index] = el.value;
+        }
+
+    });
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
 
 </script>
 <script>
